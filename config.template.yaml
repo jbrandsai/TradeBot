@@ -1,0 +1,66 @@
+distribution_policy:
+  allocation:
+    trading_account_retain_pct: 0.50
+    bank_main_checking_pct: 0.25
+    bank_iul_funding_pct: 0.25
+  rounding:
+    currency_precision: 2
+
+withdrawal_policy:
+  brokerage_to_bank:
+    min_transfer_amount: 50.0
+    target_bank_account_alias: "main_checking"
+
+profit_policy:
+  min_weekly_profit: 50.0
+  use_high_water_mark: true
+  hwm_state_file: "hwm_state.json"
+
+env: "paper"
+
+broker:
+  type: "alpaca"
+  csv_file: "equity_history.csv"
+  account_name: "primary"
+  alpaca:
+    base_url: "https://paper-api.alpaca.markets"
+    data_base_url: "https://data.alpaca.markets"
+    api_key_id: ""        # SET VIA ENV VAR: ALPACA_API_KEY
+    secret_key: ""        # SET VIA ENV VAR: ALPACA_SECRET_KEY
+    prompt_if_api_fails: true
+
+strategy:
+  type: "top_n_rotation"
+  top_n: 5
+  rebalance_threshold_pct: 0.05
+  allocation_mode: "equal"
+
+risk:
+  allowed_symbols:
+    - "SPY"
+    - "QQQ"
+    - "IWM"
+    - "AAPL"
+    - "MSFT"
+    - "NVDA"
+    - "AMZN"
+    - "META"
+    - "TSLA"
+    - "GOOGL"
+  max_position_value_per_symbol: 10000.0
+  max_total_portfolio_exposure: 25000.0
+  long_only: true
+  paper_only: true
+
+universe:
+  symbols:
+    - "SPY"
+    - "QQQ"
+    - "IWM"
+    - "AAPL"
+    - "MSFT"
+    - "NVDA"
+    - "AMZN"
+    - "META"
+    - "TSLA"
+    - "GOOGL"
