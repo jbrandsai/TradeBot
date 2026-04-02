@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+config.yaml
+*.log
+trade_log.csv
+equity_history.csv
+.env
+dist/
+build/
+*.bak
